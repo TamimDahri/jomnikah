@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
 export const metadata: Metadata = {
-  title: "Jom Nikah — Temui Jodoh Yang Sesuai",
-  description: "Platform perkahwinan Islam terpercaya untuk menemukan pasangan hidup anda.",
+  title: "JomNikah — Nikah Thailand, Daftar Sah di Malaysia",
+  description:
+    "Pakej nikah lengkap di Songkhla, Thailand dengan pendaftaran sah di Malaysia. RM6,500 all-in. Sijil dalam masa sebulan. Jaminan wang dikembalikan.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ms" className={geist.variable}>
+      <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
 }

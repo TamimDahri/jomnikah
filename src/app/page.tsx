@@ -1,16 +1,182 @@
 import Link from "next/link";
 
+const WA_LINK = `https://wa.me/66627424469?text=${encodeURIComponent(
+  "Assalamualaikum, saya berminat dengan pakej nikah Thailand RM6,500. Boleh terangkan lebih lanjut?"
+)}`;
+
+const PACKAGE_ITEMS = [
+  "Nikah di Majlis Agama Islam Songkhla",
+  "Imam Jurunikah",
+  "Saksi Bertauliah",
+  "Khidmat Gambar",
+  "Sijil Nikah",
+  "Surat Pengesahan Konsulat Malaysia",
+  "Surat Pemastautin di Perlis",
+  "Sijil Nikah Sah Malaysia",
+];
+
+const STEPS = [
+  {
+    num: "01",
+    title: "Hubungi Kami",
+    desc: "Mulakan dengan satu mesej WhatsApp. Kami akan pandu anda sepenuhnya dari A ke Z.",
+  },
+  {
+    num: "02",
+    title: "Sediakan Dokumen",
+    desc: "Hantar dokumen yang diperlukan. Kami bantu semak dan uruskan semua urusan berkenaan.",
+  },
+  {
+    num: "03",
+    title: "Majlis Nikah",
+    desc: "Hadir ke Songkhla, Thailand. Nikah dijalankan secara rasmi di Majlis Agama Islam Songkhla.",
+  },
+  {
+    num: "04",
+    title: "Terima Sijil",
+    desc: "Sijil Nikah Sah Malaysia siap dalam masa sebulan melalui pengesahan Konsulat Malaysia.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Berapa kos pakej ini?",
+    a: "Pakej kami berharga RM6,500 all-in. Tiada caj tersembunyi atau bayaran tambahan. Harga yang tertera adalah harga muktamad.",
+  },
+  {
+    q: "Adakah nikah ini sah di Malaysia?",
+    a: "Ya, sepenuhnya sah. Melalui surat pengesahan Konsulat Malaysia dan proses pendaftaran di Perlis, perkahwinan anda akan diiktiraf sepenuhnya oleh undang-undang Malaysia.",
+  },
+  {
+    q: "Berapa lama untuk mendapat sijil nikah Malaysia?",
+    a: "Dalam masa sebulan, anda akan menerima Sijil Nikah Sah Malaysia. Kami memantau proses ini dari awal hingga akhir.",
+  },
+  {
+    q: "Adakah ada jaminan wang dikembalikan?",
+    a: "Ya! Kami menawarkan jaminan penuh wang dikembalikan. Jika kami tidak dapat memenuhi perkhidmatan yang dijanjikan, wang anda akan dikembalikan sepenuhnya.",
+  },
+  {
+    q: "Perlukah pasangan hadir ke Thailand?",
+    a: "Ya, pasangan perlu hadir di Songkhla, Thailand untuk majlis nikah. Jarak Songkhla dari Perlis hanya lebih kurang 2 jam perjalanan darat.",
+  },
+  {
+    q: "Apakah dokumen yang diperlukan?",
+    a: "Dokumen asas seperti kad pengenalan dan sijil kelahiran. Kami akan berikan senarai lengkap beserta panduan terperinci selepas anda menghubungi kami.",
+  },
+];
+
+// Gradient colours for portfolio placeholders — replace /gallery/photo-X.svg with real photos
+const GALLERY = [
+  { from: "#fef3c7", to: "#d97706" },
+  { from: "#d1fae5", to: "#059669" },
+  { from: "#ffe4e6", to: "#e11d48" },
+  { from: "#e0f2fe", to: "#0284c7" },
+  { from: "#f3e8ff", to: "#7c3aed" },
+  { from: "#fed7aa", to: "#ea580c" },
+];
+
+// ─── Icons ───────────────────────────────────────────────────────────────────
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function ShieldCheckIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function BadgeCheckIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.28a8.16 8.16 0 0 0 4.77 1.52V7.35a4.85 4.85 0 0 1-1-.42z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45a2.78 2.78 0 0 0-1.95 1.97A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+      <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+// ─── Logo ────────────────────────────────────────────────────────────────────
+
+function Logo({ dark = false }: { dark?: boolean }) {
+  return (
+    <div className="flex items-center gap-2.5">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="34" height="34" rx="8" fill="#059669" />
+        {/* crescent — outer white circle offset by inner green circle */}
+        <circle cx="15" cy="17" r="11" fill="white" />
+        <circle cx="19" cy="14" r="9" fill="#059669" />
+        {/* star */}
+        <circle cx="25" cy="10" r="2.5" fill="white" />
+      </svg>
+      <span className={`text-xl font-bold tracking-tight ${dark ? "text-white" : "text-emerald-700"}`}>
+        JomNikah
+      </span>
+    </div>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main>
         <Hero />
-        <Stats />
-        <Features />
+        <TrustStrip />
+        <Package />
         <HowItWorks />
-        <Testimonials />
-        <Pricing />
+        <Gallery />
         <Faq />
         <CtaBanner />
       </main>
@@ -19,118 +185,126 @@ export default function Home() {
   );
 }
 
+// ─── Navbar ──────────────────────────────────────────────────────────────────
+
 function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-rose-100">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl">💍</span>
-          <span className="text-xl font-bold text-rose-700">Jom Nikah</span>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+        <Link href="/" aria-label="JomNikah">
+          <Logo />
         </Link>
+
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <Link href="#how-it-works" className="hover:text-rose-600 transition-colors">Bagaimana Ia Berfungsi</Link>
-          <Link href="#features" className="hover:text-rose-600 transition-colors">Kelebihan</Link>
-          <Link href="#testimonials" className="hover:text-rose-600 transition-colors">Testimoni</Link>
-          <Link href="#pricing" className="hover:text-rose-600 transition-colors">Harga</Link>
+          <Link href="#pakej" className="hover:text-emerald-600 transition-colors">Pakej</Link>
+          <Link href="#proses" className="hover:text-emerald-600 transition-colors">Proses</Link>
+          <Link href="#galeri" className="hover:text-emerald-600 transition-colors">Galeri</Link>
+          <Link href="#faq" className="hover:text-emerald-600 transition-colors">FAQ</Link>
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="/login" className="hidden sm:block text-sm font-medium text-gray-600 hover:text-rose-600 transition-colors">
-            Log Masuk
-          </Link>
-          <Link
-            href="/register"
-            className="bg-rose-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-rose-700 transition-colors"
-          >
-            Daftar Percuma
-          </Link>
-        </div>
+
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1db954] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm"
+        >
+          <WhatsAppIcon className="w-4 h-4" />
+          <span className="hidden sm:inline">Hubungi Kami</span>
+          <span className="sm:hidden">WhatsApp</span>
+        </a>
       </div>
     </header>
   );
 }
 
+// ─── Hero ────────────────────────────────────────────────────────────────────
+
 function Hero() {
   return (
-    <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-rose-50 via-white to-amber-50">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 bg-rose-100 text-rose-700 text-sm font-medium px-4 py-2 rounded-full">
-            <span>✨</span>
-            <span>Platform Perkahwinan Islam Terpercaya</span>
-          </div>
-          <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Temui{" "}
-            <span className="text-rose-600">Jodoh</span>{" "}
-            Yang Sesuai
-          </h1>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
-            Bergabung bersama lebih 50,000 ahli yang mencari pasangan hidup berdasarkan nilai-nilai Islam. Profil terverifikasi, privasi terjamin, dan sokongan sepenuh masa.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/register"
-              className="bg-rose-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-rose-700 transition-colors text-center shadow-lg shadow-rose-200"
-            >
-              Mulakan Perjalanan Anda
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="border-2 border-gray-200 text-gray-700 font-semibold px-8 py-4 rounded-full hover:border-rose-300 hover:text-rose-600 transition-colors text-center"
-            >
-              Ketahui Lebih Lanjut
-            </Link>
-          </div>
-          <p className="text-sm text-gray-400">
-            Percuma untuk mendaftar • Tiada kad kredit diperlukan
-          </p>
+    <section className="pt-36 pb-28 px-6 bg-white">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full border border-emerald-200">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+          Khidmat Nikah Thailand — Daftar Sah di Malaysia
         </div>
 
-        <div className="relative hidden lg:block">
-          <div className="bg-gradient-to-br from-rose-400 to-amber-400 rounded-3xl w-full aspect-square max-w-md mx-auto flex items-center justify-center shadow-2xl shadow-rose-200">
-            <div className="text-center space-y-4 p-8">
-              <div className="text-8xl">💑</div>
-              <div className="bg-white/90 rounded-2xl p-4 space-y-2">
-                <p className="text-gray-800 font-semibold">Ahmad & Nurul</p>
-                <p className="text-rose-600 text-sm">Bertemu melalui Jom Nikah</p>
-                <p className="text-gray-500 text-xs">Berkahwin pada 2024 ❤️</p>
-              </div>
-            </div>
-          </div>
-          <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
-            <span className="text-2xl">🌙</span>
-            <div>
-              <p className="text-xs text-gray-500">Berdasarkan</p>
-              <p className="text-sm font-semibold text-gray-800">Nilai Islam</p>
-            </div>
-          </div>
-          <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
-            <span className="text-2xl">✅</span>
-            <div>
-              <p className="text-xs text-gray-500">Profil</p>
-              <p className="text-sm font-semibold text-gray-800">Terverifikasi</p>
-            </div>
-          </div>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight">
+          Nikah di Thailand,{" "}
+          <span className="text-emerald-600">Daftar Sah</span>{" "}
+          di Malaysia.
+        </h1>
+
+        <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          Pakej lengkap{" "}
+          <strong className="text-gray-800 font-bold">RM6,500</strong> — kami uruskan semua dari A ke Z.
+          Sijil Nikah Sah Malaysia dalam masa{" "}
+          <strong className="text-gray-800 font-bold">sebulan</strong>.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1db954] text-white font-bold px-8 py-4 rounded-full transition-colors shadow-lg shadow-green-200 text-lg"
+          >
+            <WhatsAppIcon className="w-5 h-5" />
+            Hubungi Kami di WhatsApp
+          </a>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500 pt-2">
+          <span className="flex items-center gap-1.5">
+            <CheckIcon className="w-4 h-4 text-emerald-500" />
+            Jaminan Wang Dikembalikan
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CheckIcon className="w-4 h-4 text-emerald-500" />
+            Sijil Sah Dalam Masa Sebulan
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CheckIcon className="w-4 h-4 text-emerald-500" />
+            Proses 100% Sah &amp; Terurus
+          </span>
         </div>
       </div>
     </section>
   );
 }
 
-function Stats() {
-  const stats = [
-    { value: "50,000+", label: "Ahli Berdaftar" },
-    { value: "5,000+", label: "Pasangan Berjaya" },
-    { value: "98%", label: "Kepuasan Pengguna" },
-    { value: "10+", label: "Tahun Pengalaman" },
+// ─── Trust Strip ─────────────────────────────────────────────────────────────
+
+function TrustStrip() {
+  const items = [
+    {
+      Icon: ShieldCheckIcon,
+      title: "Jaminan Wang Dikembalikan",
+      desc: "Jika kami gagal memenuhi perkhidmatan, wang anda dikembalikan sepenuhnya.",
+    },
+    {
+      Icon: ClockIcon,
+      title: "Sijil Sah Dalam Masa Sebulan",
+      desc: "Sijil Nikah Sah Malaysia siap dalam tempoh 30 hari dari tarikh nikah.",
+    },
+    {
+      Icon: BadgeCheckIcon,
+      title: "Diiktiraf Di Sisi Undang-Undang",
+      desc: "Sah sepenuhnya di Malaysia melalui pengesahan Konsulat dan pendaftaran Perlis.",
+    },
   ];
 
   return (
-    <section className="py-16 bg-rose-600">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-        {stats.map((stat) => (
-          <div key={stat.label}>
-            <p className="text-4xl font-bold text-white mb-2">{stat.value}</p>
-            <p className="text-rose-200 text-sm font-medium">{stat.label}</p>
+    <section className="py-16 bg-emerald-50 border-y border-emerald-100">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+        {items.map(({ Icon, title, desc }) => (
+          <div key={title} className="flex gap-4 items-start">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
+              <Icon className="w-5 h-5 text-emerald-700" />
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900 mb-1">{title}</p>
+              <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -138,107 +312,84 @@ function Stats() {
   );
 }
 
-function Features() {
-  const features = [
-    {
-      icon: "🛡️",
-      title: "Profil Terverifikasi",
-      description: "Setiap profil disemak dan disahkan oleh pasukan kami untuk memastikan keselamatan dan keaslian ahli.",
-    },
-    {
-      icon: "🔒",
-      title: "Privasi Terjamin",
-      description: "Kawalan penuh ke atas maklumat peribadi anda. Hanya kongsi apa yang anda selesa.",
-    },
-    {
-      icon: "🌙",
-      title: "Nilai-Nilai Islam",
-      description: "Platform yang direka khas mengikut garis panduan Islam, menghormati adab dan tatasusila perkahwinan.",
-    },
-    {
-      icon: "🤝",
-      title: "Sokongan Wali",
-      description: "Kami memudahkan proses melibatkan keluarga dan wali dalam perjalanan mencari pasangan.",
-    },
-    {
-      icon: "💬",
-      title: "Komunikasi Selamat",
-      description: "Sistem pesanan terkawal yang memastikan interaksi berlangsung dalam persekitaran yang sopan.",
-    },
-    {
-      icon: "🎯",
-      title: "Padanan Tepat",
-      description: "Algoritma pintar yang memadankan anda berdasarkan nilai, minat, latar belakang, dan keutamaan.",
-    },
-  ];
+// ─── Package ─────────────────────────────────────────────────────────────────
 
+function Package() {
   return (
-    <section id="features" className="py-24 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-rose-600 font-semibold text-sm uppercase tracking-wide">Kelebihan Kami</p>
-          <h2 className="text-4xl font-bold text-gray-900">Mengapa Pilih Jom Nikah?</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Kami memahami kepentingan perkahwinan dalam Islam dan komited untuk membantu anda menemukan pasangan yang sesuai.
-          </p>
+    <section id="pakej" className="py-24 px-6 bg-white">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-14 space-y-3">
+          <p className="text-emerald-600 font-semibold text-sm uppercase tracking-widest">Pakej Kami</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Apa Yang Anda Terima</h2>
+          <p className="text-gray-500 text-lg">Satu pakej lengkap, tiada caj tersembunyi.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="p-6 rounded-2xl border border-gray-100 hover:border-rose-200 hover:shadow-lg hover:shadow-rose-50 transition-all group"
-            >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
+
+        <div className="rounded-3xl border-2 border-emerald-200 overflow-hidden shadow-2xl shadow-emerald-50">
+          {/* Price header */}
+          <div className="bg-emerald-600 px-8 py-12 text-center">
+            <div className="inline-flex items-center gap-2 bg-amber-400 text-amber-900 text-sm font-bold px-4 py-1.5 rounded-full mb-6">
+              <ShieldCheckIcon className="w-4 h-4" />
+              Jaminan Wang Dikembalikan
             </div>
-          ))}
+            <div className="flex items-end justify-center gap-1 mb-2">
+              <span className="text-emerald-300 text-3xl font-semibold mb-1">RM</span>
+              <span className="text-white text-8xl font-bold leading-none tracking-tight">6,500</span>
+            </div>
+            <p className="text-emerald-200 text-base">Pakej All-In — Tiada Caj Tersembunyi</p>
+          </div>
+
+          {/* Items */}
+          <div className="bg-white px-8 py-10">
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+              {PACKAGE_ITEMS.map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                    <CheckIcon className="w-3.5 h-3.5 text-emerald-600" />
+                  </div>
+                  <span className="text-gray-700 font-medium text-sm sm:text-base">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t border-gray-100 pt-8 text-center space-y-3">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1db954] text-white font-bold px-10 py-4 rounded-full transition-colors shadow-lg shadow-green-200 text-lg"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+                Daftar &amp; Tanya Sekarang
+              </a>
+              <p className="text-sm text-gray-400">Kami sedia membantu anda setiap langkah</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+// ─── How It Works ────────────────────────────────────────────────────────────
 
 function HowItWorks() {
-  const steps = [
-    {
-      step: "01",
-      title: "Daftar & Bina Profil",
-      description: "Cipta akaun percuma dan lengkapkan profil anda dengan maklumat peribadi, pendidikan, kerjaya, dan apa yang anda cari dalam pasangan.",
-    },
-    {
-      step: "02",
-      title: "Cari & Padankan",
-      description: "Gunakan ciri carian terperinci kami atau biarkan sistem padanan pintar kami mencadangkan profil yang sesuai untuk anda.",
-    },
-    {
-      step: "03",
-      title: "Hubungi & Melangkah",
-      description: "Hantar permintaan minat, berbual dalam persekitaran yang selamat, dan apabila bersedia, libatkan keluarga untuk melangkah ke peringkat seterusnya.",
-    },
-  ];
-
   return (
-    <section id="how-it-works" className="py-24 px-6 bg-amber-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-rose-600 font-semibold text-sm uppercase tracking-wide">Proses Mudah</p>
-          <h2 className="text-4xl font-bold text-gray-900">Bagaimana Ia Berfungsi?</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Hanya tiga langkah mudah untuk memulakan perjalanan mencari pasangan hidup anda.
-          </p>
+    <section id="proses" className="py-24 px-6 bg-slate-50">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16 space-y-3">
+          <p className="text-emerald-600 font-semibold text-sm uppercase tracking-widest">Cara Ia Berfungsi</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">4 Langkah Mudah</h2>
+          <p className="text-gray-500 text-lg">Dari hubungi kami hingga sijil di tangan — kami uruskan semuanya.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-0.5 bg-rose-200" />
-          {steps.map((step, i) => (
-            <div key={step.step} className="relative text-center space-y-4">
-              <div className="w-24 h-24 bg-rose-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-rose-200 relative z-10">
-                <span className="text-2xl font-bold text-white">{step.step}</span>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {STEPS.map((step) => (
+            <div key={step.num} className="space-y-4">
+              <div className="w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                <span className="text-white font-bold text-lg">{step.num}</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
+              <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -247,359 +398,160 @@ function HowItWorks() {
   );
 }
 
-function Testimonials() {
-  const testimonials = [
-    {
-      name: "Ahmad Faris & Nurul Ain",
-      location: "Kuala Lumpur",
-      year: "Berkahwin 2023",
-      quote: "Saya tidak menyangka akan menemui jodoh melalui platform dalam talian. Alhamdulillah, Jom Nikah telah memudahkan proses kami dengan cara yang beradab dan bersesuaian dengan nilai Islam.",
-      avatar: "👨‍👩‍👧",
-    },
-    {
-      name: "Zulhilmi & Farah Diyana",
-      location: "Johor Bahru",
-      year: "Berkahwin 2024",
-      quote: "Ciri padanan yang tepat membantu kami menemui antara satu sama lain walaupun tinggal di bandar yang berbeza. Proses dari berkenalan hingga berkahwin berjalan dengan lancar.",
-      avatar: "💏",
-    },
-    {
-      name: "Hafiz & Suraya",
-      location: "Penang",
-      year: "Berkahwin 2024",
-      quote: "Yang paling kami hargai ialah platform ini menggalakkan penglibatan keluarga dari awal. Ia sangat membantu dalam memastikan prosesnya berjalan mengikut adab Islam.",
-      avatar: "👫",
-    },
-  ];
+// ─── Gallery ─────────────────────────────────────────────────────────────────
+// To use real photos: place images in /public/gallery/ (photo-1.jpg … photo-6.jpg)
+// and swap the gradient divs below for:
+//   <img src={`/gallery/photo-${i+1}.jpg`} alt="Portfolio" className="absolute inset-0 w-full h-full object-cover scale-110" style={{ filter: 'blur(20px)' }} />
 
+function Gallery() {
   return (
-    <section id="testimonials" className="py-24 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-rose-600 font-semibold text-sm uppercase tracking-wide">Kisah Kejayaan</p>
-          <h2 className="text-4xl font-bold text-gray-900">Pasangan Yang Berjaya</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Ribuan pasangan telah menemui jodoh mereka melalui Jom Nikah. Inilah beberapa kisah mereka.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="bg-rose-50 rounded-2xl p-8 space-y-6 border border-rose-100"
-            >
-              <div className="text-4xl text-center">{t.avatar}</div>
-              <blockquote className="text-gray-600 text-sm leading-relaxed italic">
-                &ldquo;{t.quote}&rdquo;
-              </blockquote>
-              <div className="border-t border-rose-200 pt-4">
-                <p className="font-semibold text-gray-900">{t.name}</p>
-                <p className="text-sm text-rose-500">{t.location} · {t.year}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  const plans = [
-    {
-      name: "Percuma",
-      price: "RM0",
-      period: "selamanya",
-      description: "Sesuai untuk memulakan perjalanan mencari jodoh.",
-      features: [
-        "Profil asas",
-        "Cari sehingga 10 profil sehari",
-        "Hantar 3 permintaan minat sebulan",
-        "Akses komuniti",
-      ],
-      excluded: [
-        "Lihat yang melihat profil anda",
-        "Mesej tanpa had",
-        "Lencana terverifikasi",
-        "Sokongan keutamaan",
-      ],
-      cta: "Daftar Percuma",
-      href: "/register",
-      highlighted: false,
-    },
-    {
-      name: "Premium",
-      price: "RM49",
-      period: "sebulan",
-      description: "Untuk mereka yang serius mencari pasangan hidup.",
-      features: [
-        "Semua dalam pelan Percuma",
-        "Cari profil tanpa had",
-        "Mesej tanpa had",
-        "Lihat yang melihat profil anda",
-        "Lencana ahli terverifikasi",
-        "Profil ditonjolkan dalam carian",
-        "Sokongan keutamaan 24/7",
-      ],
-      excluded: [],
-      cta: "Mulakan 7 Hari Percuma",
-      href: "/register?plan=premium",
-      highlighted: true,
-    },
-    {
-      name: "Keluarga",
-      price: "RM89",
-      period: "sebulan",
-      description: "Penglibatan keluarga penuh dalam proses pencarian.",
-      features: [
-        "Semua dalam pelan Premium",
-        "Akaun wali / ibu bapa",
-        "Komunikasi terpandu keluarga",
-        "Sesi kaunseling perkahwinan (1x/bulan)",
-        "Pengesahan latar belakang tambahan",
-        "Pengurus akaun peribadi",
-      ],
-      excluded: [],
-      cta: "Hubungi Kami",
-      href: "/contact",
-      highlighted: false,
-    },
-  ];
-
-  return (
-    <section id="pricing" className="py-24 px-6 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-rose-600 font-semibold text-sm uppercase tracking-wide">Harga</p>
-          <h2 className="text-4xl font-bold text-gray-900">Pilih Pelan Yang Sesuai</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Mulakan secara percuma atau tingkatkan ke pelan premium untuk lebih banyak ciri dan peluang mencari jodoh.
-          </p>
+    <section id="galeri" className="py-24 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-14 space-y-3">
+          <p className="text-emerald-600 font-semibold text-sm uppercase tracking-widest">Galeri Portfolio</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Kenangan Yang Bermakna</h2>
+          <p className="text-gray-500 text-lg">Gambar diburamkan bagi menjaga privasi setiap pasangan.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 items-start">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`rounded-2xl p-8 space-y-6 border-2 relative ${
-                plan.highlighted
-                  ? "bg-rose-600 border-rose-600 shadow-2xl shadow-rose-200 scale-105"
-                  : "bg-white border-gray-100"
-              }`}
-            >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="bg-amber-400 text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full">
-                    ⭐ PALING POPULAR
-                  </span>
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <p className={`font-semibold text-sm uppercase tracking-wide ${plan.highlighted ? "text-rose-200" : "text-rose-600"}`}>
-                  {plan.name}
-                </p>
-                <div className="flex items-end gap-1">
-                  <span className={`text-5xl font-bold ${plan.highlighted ? "text-white" : "text-gray-900"}`}>
-                    {plan.price}
-                  </span>
-                  <span className={`text-sm mb-2 ${plan.highlighted ? "text-rose-200" : "text-gray-400"}`}>
-                    /{plan.period}
-                  </span>
-                </div>
-                <p className={`text-sm ${plan.highlighted ? "text-rose-200" : "text-gray-500"}`}>
-                  {plan.description}
-                </p>
-              </div>
-
-              <Link
-                href={plan.href}
-                className={`block text-center font-semibold py-3 rounded-full transition-colors ${
-                  plan.highlighted
-                    ? "bg-white text-rose-600 hover:bg-rose-50"
-                    : "bg-rose-600 text-white hover:bg-rose-700"
-                }`}
-              >
-                {plan.cta}
-              </Link>
-
-              <ul className="space-y-3">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
-                    <span className="mt-0.5 shrink-0">✅</span>
-                    <span className={plan.highlighted ? "text-rose-100" : "text-gray-600"}>
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-                {plan.excluded.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm opacity-50">
-                    <span className="mt-0.5 shrink-0">❌</span>
-                    <span className={plan.highlighted ? "text-rose-200" : "text-gray-400"}>
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          {GALLERY.map(({ from, to }, i) => (
+            <div key={i} className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <div
+                className="absolute inset-0 scale-110"
+                style={{
+                  background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)`,
+                  filter: "blur(22px)",
+                }}
+              />
+              {/* Subtle overlay so the blurred gradient looks more photo-like */}
+              <div className="absolute inset-0 bg-black/10" />
             </div>
           ))}
         </div>
 
-        <p className="text-center text-sm text-gray-400 mt-10">
-          Semua harga dalam Ringgit Malaysia (RM) termasuk cukai. Batalkan pada bila-bila masa.
+        <p className="text-center text-sm text-gray-400 mt-8">
+          Hubungi kami di WhatsApp untuk melihat lebih banyak portfolio kami.
         </p>
       </div>
     </section>
   );
 }
 
-function Faq() {
-  const faqs = [
-    {
-      q: "Adakah Jom Nikah selamat digunakan?",
-      a: "Ya. Kami mengesahkan setiap profil secara manual sebelum diluluskan. Semua maklumat peribadi dilindungi dan tidak dikongsi tanpa kebenaran anda. Kami juga menggunakan enkripsi SSL untuk melindungi data anda.",
-    },
-    {
-      q: "Bagaimana proses pengesahan profil berfungsi?",
-      a: "Setelah mendaftar, anda perlu menghantar salinan kad pengenalan dan gambar terkini. Pasukan kami akan menyemak dan mengesahkan profil anda dalam masa 1–2 hari bekerja. Profil yang disahkan akan mendapat lencana khas.",
-    },
-    {
-      q: "Bolehkah saya mendaftar atas nama anak atau ahli keluarga?",
-      a: "Ya, kami menggalakkan penglibatan keluarga. Anda boleh mendaftar dengan pelan Keluarga yang membolehkan ibu bapa atau wali mengurus profil bersama-sama, selaras dengan adab perkahwinan Islam.",
-    },
-    {
-      q: "Apakah yang berlaku selepas saya menghantar permintaan minat?",
-      a: "Pihak yang anda minati akan dimaklumkan dan boleh menerima atau menolak permintaan. Jika diterima, anda berdua boleh mula berkomunikasi melalui platform kami. Kami menggalakkan penglibatan keluarga pada peringkat ini.",
-    },
-    {
-      q: "Bolehkah saya membatalkan langganan pada bila-bila masa?",
-      a: "Ya, anda boleh membatalkan langganan pada bila-bila masa tanpa sebarang penalti. Akses premium anda akan kekal sehingga akhir tempoh pembayaran semasa.",
-    },
-    {
-      q: "Adakah platform ini hanya untuk orang Islam?",
-      a: "Jom Nikah direka khas mengikut nilai dan adab perkahwinan Islam. Platform ini terbuka untuk semua umat Islam yang serius mencari pasangan hidup mengikut cara yang direstui agama.",
-    },
-    {
-      q: "Berapa lama biasanya seseorang menemui pasangan melalui Jom Nikah?",
-      a: "Ia berbeza bergantung pada setiap individu. Ramai ahli kami menemui jodoh dalam masa 3–6 bulan. Kunci utamanya ialah melengkapkan profil dengan jujur dan aktif berinteraksi dengan cara yang sopan.",
-    },
-  ];
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
 
+function Faq() {
   return (
-    <section id="faq" className="py-24 px-6 bg-white">
+    <section id="faq" className="py-24 px-6 bg-emerald-50">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-rose-600 font-semibold text-sm uppercase tracking-wide">FAQ</p>
-          <h2 className="text-4xl font-bold text-gray-900">Soalan Lazim</h2>
-          <p className="text-gray-500">
-            Ada soalan? Kami ada jawapannya.
-          </p>
+        <div className="text-center mb-14 space-y-3">
+          <p className="text-emerald-600 font-semibold text-sm uppercase tracking-widest">FAQ</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Soalan Lazim</h2>
+          <p className="text-gray-500 text-lg">Ada soalan? Kami ada jawapannya.</p>
         </div>
 
         <div className="space-y-3">
-          {faqs.map((faq) => (
+          {FAQS.map((faq) => (
             <details
               key={faq.q}
-              className="group border border-gray-100 rounded-2xl overflow-hidden"
+              className="group bg-white border border-gray-200 rounded-2xl overflow-hidden"
             >
-              <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none hover:bg-rose-50 transition-colors">
-                <span className="font-semibold text-gray-900 text-sm sm:text-base">{faq.q}</span>
-                <span className="shrink-0 text-rose-500 text-xl transition-transform group-open:rotate-45">+</span>
+              <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none hover:bg-emerald-50 transition-colors">
+                <span className="font-semibold text-gray-900 text-sm sm:text-base pr-4">{faq.q}</span>
+                <span className="shrink-0 w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 text-lg leading-none group-open:rotate-45 transition-transform">
+                  +
+                </span>
               </summary>
-              <div className="px-6 pb-5 text-gray-500 text-sm leading-relaxed border-t border-gray-100 pt-4">
+              <div className="px-6 pb-6 pt-2 text-gray-500 text-sm leading-relaxed border-t border-gray-100">
                 {faq.a}
               </div>
             </details>
           ))}
         </div>
 
-        <p className="text-center text-sm text-gray-400 mt-10">
-          Masih ada soalan?{" "}
-          <Link href="/contact" className="text-rose-600 hover:underline font-medium">
-            Hubungi kami
-          </Link>
-        </p>
+        <div className="text-center mt-10">
+          <p className="text-gray-500 mb-4">Masih ada soalan lain?</p>
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-900 transition-colors"
+          >
+            <WhatsAppIcon className="w-4 h-4" />
+            Tanya kami terus di WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );
 }
+
+// ─── CTA Banner ──────────────────────────────────────────────────────────────
 
 function CtaBanner() {
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-rose-600 to-rose-700">
+    <section className="py-28 px-6 bg-slate-900">
       <div className="max-w-3xl mx-auto text-center space-y-8">
-        <h2 className="text-4xl font-bold text-white">
-          Siap Untuk Memulakan Perjalanan Anda?
+        <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+          Bersedia Untuk{" "}
+          <span className="text-emerald-400">Melangkah</span>?
         </h2>
-        <p className="text-rose-200 text-lg">
-          Daftar percuma hari ini dan mula mencari pasangan hidup anda bersama ribuan ahli lain yang serius dalam mencari jodoh.
+        <p className="text-slate-400 text-xl leading-relaxed">
+          Hubungi kami sekarang. Kami akan pandu anda sepenuhnya — dari dokumen hingga sijil di tangan.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/register"
-            className="bg-white text-rose-600 font-semibold px-8 py-4 rounded-full hover:bg-rose-50 transition-colors shadow-lg"
+        <div className="pt-2">
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1db954] text-white font-bold px-10 py-5 rounded-full transition-colors shadow-xl shadow-green-900/30 text-lg"
           >
-            Daftar Percuma Sekarang
-          </Link>
-          <Link
-            href="/login"
-            className="border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-full hover:border-white hover:bg-white/10 transition-colors"
-          >
-            Log Masuk
-          </Link>
+            <WhatsAppIcon className="w-6 h-6" />
+            Hubungi Kami di WhatsApp
+          </a>
         </div>
-        <p className="text-rose-300 text-sm">
-          Tiada bayaran tersembunyi • Batalkan pada bila-bila masa
+        <p className="text-slate-500 text-sm">
+          Jaminan wang dikembalikan &middot; Pakej RM6,500 all-in
         </p>
       </div>
     </section>
   );
 }
 
+// ─── Footer ──────────────────────────────────────────────────────────────────
+
 function Footer() {
-  const links = {
-    Platform: ["Cari Profil", "Bagaimana Ia Berfungsi", "Harga", "Kisah Kejayaan"],
-    Syarikat: ["Tentang Kami", "Blog", "Kerjaya", "Hubungi Kami"],
-    Sokongan: ["Pusat Bantuan", "Keselamatan", "Laporan Masalah", "FAQ"],
-    Undang: ["Terma Perkhidmatan", "Dasar Privasi", "Dasar Kuki"],
-  };
+  const socials = [
+    { Icon: FacebookIcon, href: "#", label: "Facebook" },
+    { Icon: TikTokIcon, href: "#", label: "TikTok" },
+    { Icon: YouTubeIcon, href: "#", label: "YouTube" },
+  ];
 
   return (
-    <footer className="bg-gray-900 text-gray-400 py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          <div className="col-span-2 lg:col-span-1 space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">💍</span>
-              <span className="text-xl font-bold text-white">Jom Nikah</span>
-            </div>
-            <p className="text-sm leading-relaxed">
-              Platform perkahwinan Islam terpercaya di Malaysia.
-            </p>
-            <div className="flex gap-4 text-xl">
-              <span className="cursor-pointer hover:text-white transition-colors">📘</span>
-              <span className="cursor-pointer hover:text-white transition-colors">📸</span>
-              <span className="cursor-pointer hover:text-white transition-colors">🐦</span>
-            </div>
-          </div>
-          {Object.entries(links).map(([category, items]) => (
-            <div key={category} className="space-y-4">
-              <p className="text-white font-semibold text-sm">{category}</p>
-              <ul className="space-y-2">
-                {items.map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-sm hover:text-white transition-colors">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+    <footer className="bg-slate-900 border-t border-slate-800 py-14 px-6">
+      <div className="max-w-6xl mx-auto flex flex-col items-center gap-8">
+        <Link href="/" aria-label="JomNikah">
+          <Logo dark />
+        </Link>
+
+        <p className="text-slate-400 text-sm text-center max-w-sm">
+          Khidmat nikah Thailand — daftar sah di Malaysia. Pakej RM6,500 all-in dengan jaminan wang dikembalikan.
+        </p>
+
+        <div className="flex items-center gap-5">
+          {socials.map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="w-10 h-10 rounded-full border border-slate-700 hover:border-emerald-500 flex items-center justify-center text-slate-400 hover:text-emerald-400 transition-colors"
+            >
+              <Icon className="w-5 h-5" />
+            </a>
           ))}
         </div>
-        <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm">© 2025 Jom Nikah. Hak cipta terpelihara.</p>
-          <p className="text-sm">Dibuat dengan ❤️ di Malaysia</p>
+
+        <div className="border-t border-slate-800 w-full pt-8 text-center text-sm text-slate-600">
+          &copy; {new Date().getFullYear()} JomNikah. Hak cipta terpelihara.
         </div>
       </div>
     </footer>
