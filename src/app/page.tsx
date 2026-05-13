@@ -64,14 +64,22 @@ const FAQS = [
   },
 ];
 
-// Gradient colours for portfolio placeholders — replace /gallery/photo-X.svg with real photos
-const GALLERY = [
-  { from: "#fef3c7", to: "#d97706" },
-  { from: "#d1fae5", to: "#059669" },
-  { from: "#ffe4e6", to: "#e11d48" },
-  { from: "#e0f2fe", to: "#0284c7" },
-  { from: "#f3e8ff", to: "#7c3aed" },
-  { from: "#fed7aa", to: "#ea580c" },
+const USPS = [
+  {
+    icon: "scale",
+    title: "Sah di Sisi Undang-Undang Kedua-Dua Negara",
+    desc: "Semua urusan dijalankan mengikut lunas undang-undang Malaysia dan Thailand sepenuhnya.",
+  },
+  {
+    icon: "user",
+    title: "Pendaftaran Malaysia Tanpa Kehadiran Isteri Pertama",
+    desc: "Proses pendaftaran nikah di Malaysia boleh dilaksanakan tanpa memerlukan kehadiran isteri pertama.",
+  },
+  {
+    icon: "lock",
+    title: "Peribadi &amp; Sulit Adalah Keutamaan Kami",
+    desc: "Privasi anda dijaga sepenuhnya. Semua maklumat dan urusan dirahsiakan dengan ketat.",
+  },
 ];
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
@@ -115,6 +123,34 @@ function BadgeCheckIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
       <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+function ScaleIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3v18M3 9l9-6 9 6M3 15l9 6 9-6" />
+      <path d="M5 9l-2 6h4L5 9zM19 9l-2 6h4l-2-6z" />
+    </svg>
+  );
+}
+
+function UserShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.68-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+function LockIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      <circle cx="12" cy="16" r="1" fill="currentColor" />
     </svg>
   );
 }
@@ -173,6 +209,7 @@ export default function Home() {
       <main>
         <Hero />
         <TrustStrip />
+        <Usp />
         <Package />
         <HowItWorks />
         <Gallery />
@@ -311,6 +348,41 @@ function TrustStrip() {
   );
 }
 
+// ─── USP ─────────────────────────────────────────────────────────────────────
+
+const USP_ICONS: Record<string, React.FC<{ className?: string }>> = {
+  scale: ScaleIcon,
+  user: UserShieldIcon,
+  lock: LockIcon,
+};
+
+function Usp() {
+  return (
+    <section className="py-24 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-14 space-y-3">
+          <p className="text-emerald-600 font-semibold text-sm uppercase tracking-widest">Kelebihan Kami</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Mengapa Pilih JomNikah?</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {USPS.map(({ icon, title, desc }) => {
+            const Icon = USP_ICONS[icon];
+            return (
+              <div key={title} className="p-8 rounded-2xl border border-gray-100 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors">
+                  <Icon className="w-6 h-6 text-emerald-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Package ─────────────────────────────────────────────────────────────────
 
 function Package() {
@@ -419,7 +491,7 @@ function Gallery() {
                 src={`/gallery/photo-${n}.jpg`}
                 alt="Portfolio"
                 className="absolute inset-0 w-full h-full object-cover scale-110"
-                style={{ filter: "blur(20px)" }}
+                style={{ filter: "blur(10px)" }}
               />
             </div>
           ))}
