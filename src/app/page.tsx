@@ -11,7 +11,6 @@ const PACKAGE_ITEMS = [
   "Khidmat Gambar",
   "Sijil Nikah",
   "Surat Pengesahan Konsulat Malaysia",
-  "Surat Pemastautin di Perlis",
   "Sijil Nikah Sah Malaysia",
 ];
 
@@ -399,9 +398,8 @@ function HowItWorks() {
 }
 
 // ─── Gallery ─────────────────────────────────────────────────────────────────
-// To use real photos: place images in /public/gallery/ (photo-1.jpg … photo-6.jpg)
-// and swap the gradient divs below for:
-//   <img src={`/gallery/photo-${i+1}.jpg`} alt="Portfolio" className="absolute inset-0 w-full h-full object-cover scale-110" style={{ filter: 'blur(20px)' }} />
+
+const PHOTOS = [1, 2, 3, 4, 5, 6, 7];
 
 function Gallery() {
   return (
@@ -414,17 +412,15 @@ function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          {GALLERY.map(({ from, to }, i) => (
-            <div key={i} className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <div
-                className="absolute inset-0 scale-110"
-                style={{
-                  background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)`,
-                  filter: "blur(22px)",
-                }}
+          {PHOTOS.map((n) => (
+            <div key={n} className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-gray-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/gallery/photo-${n}.jpg`}
+                alt="Portfolio"
+                className="absolute inset-0 w-full h-full object-cover scale-110"
+                style={{ filter: "blur(20px)" }}
               />
-              {/* Subtle overlay so the blurred gradient looks more photo-like */}
-              <div className="absolute inset-0 bg-black/10" />
             </div>
           ))}
         </div>
