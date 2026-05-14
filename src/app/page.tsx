@@ -325,7 +325,7 @@ function TrustStrip() {
     {
       Icon: BadgeCheckIcon,
       title: "Diiktiraf Di Sisi Undang-Undang",
-      desc: "Sah sepenuhnya di Malaysia melalui pengesahan Konsulat dan pendaftaran Perlis.",
+      desc: "Sah sepenuhnya di Malaysia melalui pengesahan Konsulat",
     },
   ];
 
